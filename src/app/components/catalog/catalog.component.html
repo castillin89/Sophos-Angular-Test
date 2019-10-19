@@ -1,0 +1,48 @@
+<div class="container-fluid">
+    <div class="row stylePrincipalRow">
+        <div class="col-2"></div>
+        <div class="col-lg-8">
+            <ng-container *ngFor="let product of products">
+                <mat-card class="shadow p-3 mb-5 bg-white rounded">
+                    <div class="row">
+                        <div class="col text-center">
+                            <img class="mediana" [src]="product['miniatura']" (click)="clickImage(product)">
+                        </div>
+                        <div class="col">
+                            <mat-card-header>
+                                <mat-card-title>
+                                    {{ product.descripcion }}
+                                </mat-card-title>
+                                <mat-card-subtitle>
+                                    {{ product.categoria }}
+                                </mat-card-subtitle>
+                            </mat-card-header>
+                            <mat-card-content>
+                                <div class="row stylePrice">
+                                    {{product.precio | currency: '$':'symbol': '1.0-0'}}
+                                </div>
+                                <div class="row">
+                                    <div class="col-7">
+                                        <mat-form-field [appearance]="appearance" style="width: 100%">
+                                            <mat-label>Cantidad</mat-label>
+                                            <input [value]=product.cantidadComprada min="0"
+                                                [max]=product.cantidadDisponible
+                                                (input)="topAvailable($event.target.value, product)" type="number"
+                                                matInput />
+                                            <mat-hint style="color:darkred">Disponible: {{product.cantidadDisponible}}
+                                            </mat-hint>
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-4 text-right">
+                                        <button mat-raised-button (click)="buy(product)">Comprar</button>
+                                    </div>
+                                </div>
+                            </mat-card-content>
+                        </div>
+                    </div>
+                </mat-card>
+            </ng-container>
+        </div>
+        <div class="col-2"></div>
+    </div>
+</div>

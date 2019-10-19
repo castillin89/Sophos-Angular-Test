@@ -1,0 +1,77 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col">
+      <mat-card>
+        <mat-card-title>
+          <div class="row margin-bottom: 10px;">
+            <div class="col text-center">
+              <h4>Datos del Cliente</h4>
+            </div>
+          </div>
+        </mat-card-title>
+        <mat-card-content>
+          <div style="display: block; max-height: 60vh;">
+            <div class="dialog-content">
+              <div class="row">
+                <form [formGroup]="form" class="col text-center" (keyup.enter)="form.valid ? login() : ''">
+                  <mat-form-field style="width: 100%; margin-bottom: 5px;" appearance="outline">
+                    <mat-label>Nombre</mat-label>
+                    <input type="text" matInput placeholder="Nombre" formControlName="nombre" />
+                  </mat-form-field>
+                  <mat-form-field style="width: 100%; margin-bottom: 5px;" appearance="outline">
+                    <mat-label>Dirección envío</mat-label>
+                    <input type="text" matInput placeholder="Dirección" formControlName="direccion" />
+                  </mat-form-field>
+                  <mat-form-field style="width: 100%; margin-bottom: 5px;" appearance="outline">
+                    <mat-label>Ciudad</mat-label>
+                    <mat-select formControlName="ciudad">
+                      <mat-option *ngFor="let city of cities" [value]="city['municipality']">
+                        {{ city["municipality"] }}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                  <mat-form-field appearance="outline" style="width: 100%;">
+                    <mat-label>Fecha nacimiento</mat-label>
+                    <input matInput readonly [max]="maxDate" (click)="picker.open()" [matDatepicker]="picker"
+                      formControlName="fechaNacimiento" />
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker startView="multi-year" touchUi #picker></mat-datepicker>
+                  </mat-form-field>
+
+                </form>
+              </div>
+            </div>
+          </div>
+        </mat-card-content>
+        <mat-card-actions>
+          <div class="row">
+            <div class="col text-center">
+              <button mat-raised-button (click)="fileInputTwo.click()">
+                <mat-icon>cloud_upload</mat-icon>
+                <span> Cargar cédula</span>
+                <input #fileInputTwo type="file" (change)="uploadDocument($event)" style="display:none;" />
+              </button>
+              <div *ngIf="uploadedDocument" class="col text-center">
+                <h1 style="color:crimson; font-size: 80%;">cédula cargada</h1>
+              </div>
+            </div>
+          </div>
+          <div class="row" style="margin-top: 10px;">
+            <div class="col text-center">
+              <button mat-raised-button style="width: 150px;" (click)="checkIn()" disabled={{!uploadedDocument}}>
+                <span> Pagar</span>
+              </button>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col text-right">
+              <button mat-raised-button (click)="close()">
+                <span> Salir</span>
+              </button>
+            </div>
+          </div>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+</div>

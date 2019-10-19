@@ -1,0 +1,64 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col">
+            <mat-card>
+                <div class="row">
+                    <ng-container *ngIf="orders.length; else emptyCar">
+
+                        <div class="table-responsive" style="padding: 20px">
+                            <table class="table table-striped table-light table table-bordered">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th scope="col">&nbsp;</th>
+                                        <th scope="col">Descripción</th>
+                                        <th scope="col">Cantidad</th>
+                                        <th scope="col">Precio</th>
+                                        <th scope="col">Precio total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let order of orders">
+                                        <td class="align-middle">
+                                            <img (click)="openImage(order)" [src]="order['miniatura']"
+                                                alt="Photo of a Shiba Inu" />
+                                        </td>
+                                        <td class="align-middle">{{ order["descripcion"] }}</td>
+                                        <td class="align-middle">{{ order["cantidadComprada"] }}</td>
+                                        <td class="align-middle">{{ order["precio"] | currency }}</td>
+                                        <td class="align-middle">
+                                            {{order["cantidadComprada"] * order["precio"] | currency }}
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </ng-container>
+                    <ng-template #emptyCar>
+                        <div class="col text-center">
+                            <div class="li">
+                                <mat-icon class="col" style="padding: 0px">report_problem</mat-icon>
+                            </div>
+                            <h3>Carrito sin productos</h3>
+                        </div>
+                    </ng-template>
+                </div>
+                <mat-card-actions>
+                    <div class="row">
+                        <div class="col text-right">
+                            <button disabled={{disableButton}} mat-raised-button mat-button (click)="openModal()">
+                                Facturar pedido
+                            </button>
+                        </div>
+
+                        <div class="col text-left">
+                            <button mat-raised-button mat-button routerLink="../catalogComponent">
+                                Ir a catálogo
+                            </button>
+                        </div>
+                    </div>
+
+                </mat-card-actions>
+            </mat-card>
+        </div>
+    </div>
+</div>

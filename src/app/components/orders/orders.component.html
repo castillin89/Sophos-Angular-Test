@@ -1,0 +1,59 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg">
+            <mat-card>
+                <mat-card-title>
+                    <div class="col text-center">
+                        <h4>Historial de Compras</h4>
+                    </div>
+                </mat-card-title>
+                <mat-card-content>
+                    <div style="margin: 1rem; width: 85vw;">
+                        <div style="margin-bottom: 1rem;" *ngIf="!oneResult">
+                            <mat-form-field appearance="outline" class="search input-short">
+                                <mat-label>Buscar</mat-label>
+                                <input matInput (keyup)="applyFilter($event.target.value)">
+                                <mat-icon matSuffix style="color: blue;">search</mat-icon>
+                            </mat-form-field>
+                        </div>
+                        <div class="mat-elevation-z8" style="border-radius: 10px; background-color: white;">
+                            <mat-table [dataSource]="dataSource" matSort>
+                                <ng-container *ngFor="let column of displayedColumns" [matColumnDef]="column">
+                                    <ng-container [ngSwitch]="column">
+
+                                        <ng-container *ngSwitchCase="'fechaNacimiento'">
+                                            <mat-header-cell class="text-center" style="color: rgba(0, 0, 255, 0.822);"
+                                                *matHeaderCellDef>
+                                                <h6>{{displayedColumnsNames[column]}}</h6>
+                                            </mat-header-cell>
+                                            <mat-cell *matCellDef="let element">
+                                                {{element[column] | date:'shortDate'}}
+                                            </mat-cell>
+                                        </ng-container>
+                                        <ng-container *ngSwitchDefault>
+                                            <mat-header-cell *matHeaderCellDef mat-sort-header
+                                                style="color: rgba(0, 0, 255, 0.822);" class="text-center">
+                                                <h6>{{displayedColumnsNames[column]}}</h6>
+                                            </mat-header-cell>
+                                            <mat-cell *matCellDef="let element" class="text-center">{{element[column]}}
+                                            </mat-cell>
+                                        </ng-container>
+                                    </ng-container>
+                                </ng-container>
+                                <mat-header-row *matHeaderRowDef="displayedColumns; sticky:true"></mat-header-row>
+                                <mat-row *matRowDef="let row; columns: displayedColumns;"
+                                    (click)="buttonClick('open', row)"
+                                    [ngClass]="{'grey': (!row['status'] && row['status']!= undefined)? true : false}">
+                                </mat-row>
+                            </mat-table>
+                            <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons
+                                style="border-radius: 10px;">
+                            </mat-paginator>
+                        </div>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+
+</div>

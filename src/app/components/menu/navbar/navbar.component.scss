@@ -1,0 +1,158 @@
+@import "src/styles.scss";
+
+@mixin item-active {
+  color: var(--on-secondary) !important;
+  background-color: var(--secondary);
+}
+
+.item-active {
+  @include item-active();
+}
+
+@mixin a-style {
+  transition: all 0.2s ease;
+  padding: 1rem 0;
+  color: rgba(0, 0, 0, 0.12);
+  text-decoration: none;
+  cursor: pointer;
+
+  &:hover {
+    transition: all 0.2s ease;
+    color: var(--secondary);
+    border-bottom: solid 1px rgba(0, 0, 0, 0.12);
+  }
+  &:not(.item-active):hover:active {
+    transition: all 0.3s ease;
+    color: var(--secondary) !important;
+    background-color: var(--on-secondary);
+  }
+}
+
+.menu-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.mat-toolbar {
+  transition: all 0.2s ease;
+  background-color: white;
+  /*background-color: var(--primary);
+  color: var(--on-primary) !important;*/
+
+  box-shadow: 0 0.1rem 0.5rem rgba(0, 0, 0, 0.15) !important;
+  //border-bottom: solid 1px rgba(0,0,0,.12);
+  z-index: 2;
+  border: none !important;
+}
+
+.mat-toolbar2 {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  height: 58px;
+
+  box-shadow: none !important;
+  width: 100%;
+  padding: 0rem 1rem;
+}
+
+.left-bar {
+  position: fixed;
+  top: 58px;
+  left: 0;
+  height: 100%;
+  width: 100%;
+
+  background-color: white;
+  box-shadow: 0 0.1rem 0.7rem rgba(71, 71, 71, 0.15) !important;
+  border: none !important;
+
+  a {
+    @include a-style();
+    margin: 0px;
+    text-align: center;
+  }
+}
+
+.right-container {
+  padding-top: 58px;
+}
+
+.mat-toolbar-row,
+.mat-toolbar-single-row {
+  height: 58px;
+}
+
+.navbar-container {
+  position: absolute;
+  //top: 58px;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.sidenav-container {
+  height: 100%;
+  //box-shadow: 0 .1rem 0.5rem rgba(0,0,0,.15)!important;
+
+  a {
+    @include a-style();
+
+    mat-icon {
+      width: 100%;
+      padding: 0 0.3rem;
+    }
+    span {
+      padding: 0.3rem;
+    }
+  }
+}
+
+.txt-menu {
+  font-size: 0.85rem;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.appName {
+  font-family: 40px;
+  text-transform: uppercase;
+}
+
+.list-icon {
+  width: 100%;
+}
+
+.crop-img {
+  width: 33px;
+  height: 33px;
+  border-radius: 100%;
+  overflow: hidden;
+  //margin: 0 auto;
+  // padding: 0;
+  // position: relative;
+  transition: all 0.2s ease;
+
+  cursor: pointer;
+  margin: 0rem 0.4rem;
+
+  &:hover {
+    transition: all 0.2s ease;
+    -webkit-transform: scale(1.02);
+    transform: scale(1.02);
+  }
+}
+
+.img-profile {
+  // width: 50px;
+  // height: 50px;
+  // padding: 0.4rem;
+
+  width: 33px;
+}
+

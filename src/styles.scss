@@ -1,1 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.snack-bar-false {
+    color: rgb(240, 240, 240);
+    background: rgb(243, 58, 58) !important;
+  }
+
+.snack-bar-true {
+color: rgb(240, 240, 240);
+background: rgb(61, 58, 243) !important;
+}
+
+.dialog-image{
+  min-width: 40vw !important;
+  padding: 2rem !important;
+}

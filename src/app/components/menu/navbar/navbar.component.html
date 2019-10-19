@@ -1,0 +1,48 @@
+<mat-sidenav-container class="navbar-container" role="main">
+  <mat-sidenav #navbar mode="over" closed class="sidenav-container fadeIn-1s">
+    <div class="mat-toolbar2">
+      <button mat-icon-button type="button" (click)="navbar.toggle()" class="button-icon">
+        <mat-icon>chevron_left</mat-icon>
+      </button>
+    </div>
+
+    <div class="container-fluid">
+
+      <a *ngFor="let app of apps" class="row" style="text-align: center;" routerLink="{{app.link}}"
+        routerLinkActive="item-active">
+        <mat-icon class="col-12">{{app.icon}}</mat-icon>
+        <span class="col-12 txt-menu">{{app.title}}</span>
+      </a>
+
+    </div>
+
+  </mat-sidenav>
+
+  <mat-sidenav-content style="background-color: #fafafa;">
+    <mat-toolbar class="menu menu-container">
+
+      <button mat-icon-button type="button" aria-label="Toggle menu" (click)="navbar.toggle()" class="button-icon">
+        <mat-icon aria-label="Button menu icon">menu</mat-icon>
+      </button>
+
+      <span class="appName slideInDown-1s" style="margin-left: 1rem;">Sophos Test</span>
+      <span class='spacer'></span>
+
+    </mat-toolbar>
+
+    <mat-drawer-container>
+      <mat-drawer mode="side" opened style="width:60px;" class="left-bar slideInLeft-1-5s">
+        <div style="width: 100%;">
+          <a *ngFor="let app of apps" class="row list-icon" routerLink="{{app.link}}" routerLinkActive="item-active"
+            matTooltip="{{app.title}}" matTooltipPosition="after">
+            <mat-icon class="col-12">{{app.icon}}</mat-icon>
+          </a>
+        </div>
+      </mat-drawer>
+
+      <mat-drawer-content style="height: 100vh;" class="right-container">
+        <router-outlet></router-outlet>
+      </mat-drawer-content>
+    </mat-drawer-container>
+  </mat-sidenav-content>
+</mat-sidenav-container>
